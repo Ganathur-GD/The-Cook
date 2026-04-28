@@ -1,71 +1,37 @@
-# 🍳 The Cook — Asistente de Cocina con IA
+# 🍳 The Cook - Generador de Recetas con IA
 
-Aplicación web full-stack con **React + Vite** (frontend) y **FastAPI** (backend), integrada con la API de **Google Gemini 2.5 Flash**.
+**The Cook** es una aplicación diseñada para esos momentos de indecisión culinaria en los que te apetece comer algo específico pero no quieres pasarte horas navegando por blogs de cocina interminables. 
 
-## Estructura
+Simplemente introduce un ingrediente que tengas a mano o que te apetezca comer, y nuestra IA generará una receta personalizada al instante.
 
-```
-The Cook/
-├── frontend/          # React + Vite (puerto 5173)
-│   └── src/
-│       ├── api/       # Cliente Axios hacia el backend
-│       ├── components/ # ChatMessages, MessageBubble, InputBar
-│       ├── App.jsx
-│       └── index.css
-│
-└── backend/           # FastAPI (puerto 8000)
-    ├── app/
-    │   ├── main.py
-    │   ├── routes/gemini.py
-    │   └── services/gemini_service.py
-    ├── .env           # ← Añade tu API Key aquí
-    └── requirements.txt
-```
+## 🚀 El Proyecto
 
-## Configuración
+Este repositorio es un proyecto experimental para explorar la integración de modelos de lenguaje avanzados en aplicaciones web modernas.
 
-### 1. API Key de Gemini
+### Tecnologías principales:
+* **Frontend:** [React](https://reactjs.org/) con [Vite](https://vitejs.dev/) para una experiencia de usuario rápida y fluida.
+* **Inteligencia Artificial:** [Google Gemini API](https://ai.google.dev/) para la generación dinámica y creativa de recetas.
+* **Backend:** Python para la gestión segura de peticiones y lógica de negocio.
 
-Crea el archivo `backend/.env` copiando el ejemplo:
+## 🛠️ Cómo funciona
 
-```bash
-cp backend/.env.example backend/.env
-```
+1.  **Input:** El usuario introduce un ingrediente que desea comer.
+2.  **Procesamiento:** El frontend envía la solicitud al backend, el cual consulta a la API de Gemini mediante un prompt optimizado.
+3.  **Resultado:** La IA devuelve una receta coherente con ingredientes y pasos, que se renderiza inmediatamente en la pantalla.
 
-Edita `backend/.env` y añade tu clave:
+## ⚙️ Configuración Local
 
-```env
-GEMINI_API_KEY=tu_api_key_aqui
-```
+1.  **Clonar el repositorio:**
+    ```bash
+    git clone https://github.com/TU_USUARIO/TU_REPOSITORIO.git
+    ```
 
-Obtén tu key en [Google AI Studio](https://aistudio.google.com/app/apikey).
+2.  **Configurar Variables de Entorno:**
+    Crea un archivo `.env` en la carpeta `backend/` basado en `.env.example` y añade tu `GEMINI_API_KEY`.
 
-## Ejecución
+3.  **Instalar dependencias:**
+    * **Backend:** `pip install -r backend/requirements.txt`
+    * **Frontend:** `cd frontend && npm install`
 
-### Backend (terminal 1)
-
-```powershell
-cd backend
-.venv\Scripts\activate
-uvicorn app.main:app --reload
-```
-
-El backend arranca en → `http://localhost:8000`  
-Documentación automática → `http://localhost:8000/docs`
-
-### Frontend (terminal 2)
-
-```powershell
-cd frontend
-npm run dev
-```
-
-La app arranca en → `http://localhost:5173`
-
-## Endpoints API
-
-| Método | Ruta | Descripción |
-|--------|------|-------------|
-| `POST` | `/api/chat` | Envía mensaje a Gemini |
-| `GET`  | `/api/health` | Estado del backend |
-| `GET`  | `/` | Health check raíz |
+---
+*Proyecto desarrollado con fines educativos y de experimentación con IAs generativas.*
