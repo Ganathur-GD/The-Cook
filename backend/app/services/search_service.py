@@ -1,8 +1,10 @@
 import os
+from pathlib import Path
 import httpx
 from dotenv import load_dotenv
 
-load_dotenv()
+# Carga el .env desde la raíz del backend independientemente del CWD
+load_dotenv(dotenv_path=Path(__file__).resolve().parents[2] / ".env")
 
 GOOGLE_SEARCH_URL = "https://www.googleapis.com/customsearch/v1"
 
@@ -30,8 +32,6 @@ class SearchService:
             "cx": self.cx,
             "q": query,
             "num": min(num, 10),  # Google CSE máximo 10 por petición
-            "searchType": "web",
-            "lr": "lang_es",       # Preferir resultados en español
         }
 
         async with httpx.AsyncClient(timeout=10.0) as client:

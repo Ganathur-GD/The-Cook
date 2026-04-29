@@ -1,9 +1,11 @@
 import os
+from pathlib import Path
 from google import genai
 from google.genai import types
 from dotenv import load_dotenv
 
-load_dotenv()
+# Carga el .env desde la raíz del backend independientemente del CWD
+load_dotenv(dotenv_path=Path(__file__).resolve().parents[2] / ".env")
 
 
 class GeminiService:
@@ -46,8 +48,17 @@ class GeminiService:
             )
         )
 
-        response = await self.client.aio.models.generate_content(
-            model=self.model_name,
-            contents=contents,
-        )
-        return response.text
+        try:
+            response = await self.client.aio.models.generate_content(
+                model=self.model_name,
+                contents=contents,
+            )
+            return response.text
+        except Exception as e:
+            error_str = str(e)
+            if "429" in error_str or "RESOURCE_EXHAUSTED" in error_str:
+                raise Exception(
+                    "Se ha superado el límite de solicitudes de la API de Gemini (cuota gratuita). "
+                    "Por favor, espera unos minutos y vuelve a intentarlo."
+                )
+            raise

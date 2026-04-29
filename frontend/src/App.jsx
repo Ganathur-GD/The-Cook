@@ -86,7 +86,7 @@ export default function App() {
         <div className="header-icon">🍳</div>
         <div>
           <div className="header-title">The Cook</div>
-          <div className="header-subtitle">Asistente de cocina con IA · gemini-2.5-flash</div>
+          <div className="header-subtitle">Asistente de cocina con IA · gemini-1.5-flash</div>
         </div>
         <div className="header-status">
           <div className={`status-dot ${isOnline ? '' : 'offline'}`} />
