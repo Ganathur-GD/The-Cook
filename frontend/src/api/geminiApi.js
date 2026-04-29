@@ -17,6 +17,17 @@ export async function sendMessage(message, history = []) {
 }
 
 /**
+ * Busca recetas en blogs de cocina usando la Custom Search API.
+ * @param {string} query
+ * @param {number} num - Número de resultados (1-10)
+ * @returns {Promise<{query: string, results: Array, total: number}>}
+ */
+export async function searchRecipes(query, num = 5) {
+  const { data } = await api.get('/search', { params: { q: query, num } })
+  return data
+}
+
+/**
  * Comprueba el estado del backend y si Gemini está configurado.
  */
 export async function checkHealth() {

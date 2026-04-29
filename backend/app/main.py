@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.routes import gemini
+from app.routes import gemini, search
 
 app = FastAPI(
     title="The Cook API",
@@ -18,6 +18,7 @@ app.add_middleware(
 )
 
 app.include_router(gemini.router, prefix="/api")
+app.include_router(search.router, prefix="/api")
 
 
 @app.get("/")
