@@ -4,7 +4,7 @@ import httpx
 from dotenv import load_dotenv
 
 # Carga el .env desde la raíz del backend independientemente del CWD
-load_dotenv(dotenv_path=Path(__file__).resolve().parents[2] / ".env")
+# load_dotenv(dotenv_path=Path(__file__).resolve().parents[2] / ".env")
 
 GOOGLE_SEARCH_URL = "https://www.googleapis.com/customsearch/v1"
 
