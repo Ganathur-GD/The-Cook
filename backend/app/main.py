@@ -24,3 +24,5 @@ app.include_router(search.router, prefix="/api")
 @app.get("/")
 async def root():
     return {"status": "ok", "message": "The Cook API está funcionando 🍳"}
+
+app = app
